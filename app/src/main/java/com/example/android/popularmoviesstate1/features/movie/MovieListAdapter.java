@@ -1,4 +1,4 @@
-package com.example.android.popularmoviesstate1.features.main;
+package com.example.android.popularmoviesstate1.features.movie;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.android.popularmoviesstate1.R;
+import com.example.android.popularmoviesstate1.data.remote.models.Movie;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     //region Fields
 
-    private List<String> movieList;
+    private List<Movie> movieList;
 
     private OnMovieListAdapterListener onMovieListAdapterListener;
 
@@ -41,7 +42,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     @Override
     public void onBindViewHolder(@NonNull MovieListViewHolder movieListViewHolder, int position) {
-        final String movie = movieList.get(position);
+        final Movie movie = movieList.get(position);
         movieListViewHolder.bind(movie);
     }
 
@@ -54,7 +55,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     //region Public Methods
 
-    public void setMovieList(List<String> movieList){
+    public void setMovieList(List<Movie> movieList){
         this.movieList = movieList;
         notifyDataSetChanged();
     }
@@ -66,10 +67,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     private View createItemView(@NonNull ViewGroup viewGroup){
         Context context = viewGroup.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        boolean shouldAttachToParentImmediately = false;
 
-        //noinspection ConstantConditions
-        return inflater.inflate(getLayoutIdForListItem(), viewGroup, shouldAttachToParentImmediately);
+        return inflater.inflate(getLayoutIdForListItem(), viewGroup, false);
     }
 
     @LayoutRes
@@ -87,7 +86,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         private ImageView moviePosterImageView;
 
-        private String movie;
+        private Movie movie;
 
         //endregion
 
@@ -117,7 +116,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         //Public Methods
 
-        public void bind(String movie){
+        public void bind(Movie movie){
             this.movie = movie;
         }
 
@@ -125,7 +124,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     }
 
     public interface OnMovieListAdapterListener {
-        public void onClickedMovieItem(String movie);
+        public void onClickedMovieItem(Movie movie);
     }
 
     //endregion

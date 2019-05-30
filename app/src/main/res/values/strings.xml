@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Popular Movies Stage 1</string>
+
+    <string name="content_description_movie_poster_item">Movie poster item</string>
+
+    <string name="label_no_available_data">No available data for the moment.</string>
 </resources>

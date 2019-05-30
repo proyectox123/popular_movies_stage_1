@@ -23,7 +23,7 @@ public class NetworkUtils {
 
     public static URL buildUrl() {
         Uri builtUri = Uri.parse(MOVIE_TOP_RATED_URL).buildUpon()
-                .appendQueryParameter(QUERY_PARAMENTER_API_KEY, "")
+                .appendQueryParameter(QUERY_PARAMENTER_API_KEY, BuildConfig.MOVIE_DB_API_KEY)
                 .build();
 
         URL url = null;

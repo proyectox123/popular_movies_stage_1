@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".features.main.MainActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/movieListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layoutManager="android.support.v7.widget.GridLayoutManager"
+        tools:orientation="vertical"
+        tools:scrollbars="vertical"
+        tools:spanCount="2"
+        tools:listitem="@layout/layout_item_movie_poster"/>
+
+</LinearLayout>

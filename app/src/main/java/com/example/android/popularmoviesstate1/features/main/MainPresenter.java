@@ -38,6 +38,11 @@ public class MainPresenter implements MainNavigator.Presenter, MainNavigator.Int
     }
 
     @Override
+    public void showErrorMessage() {
+        view.showErrorMessage();
+    }
+
+    @Override
     public void showProgressBar() {
         view.showProgressBar();
     }

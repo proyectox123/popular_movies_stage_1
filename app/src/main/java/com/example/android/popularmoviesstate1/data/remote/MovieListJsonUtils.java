@@ -13,6 +13,8 @@ import java.util.List;
 
 public final class MovieListJsonUtils {
 
+    private final static String URL_IMAGE_TBMD = "http://image.tmdb.org/t/p/w185/";
+
     public static List<Movie> getMovieListFromJson(Context context, String movieListJsonStr)
             throws JSONException {
 
@@ -33,7 +35,7 @@ public final class MovieListJsonUtils {
         int id = movieJsonObject.getInt("id");
         String title = movieJsonObject.getString("title");
         String releaseDate = movieJsonObject.getString("release_date");
-        String posterPath = movieJsonObject.getString("poster_path");
+        String posterPath = URL_IMAGE_TBMD + movieJsonObject.getString("poster_path");
         double voteAverage = movieJsonObject.getDouble("vote_average");
         String plotSynopsis = movieJsonObject.getString("overview");
 

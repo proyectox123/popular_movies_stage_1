@@ -36,5 +36,6 @@ public class MainInteractor implements MainNavigator.Interactor, MovieListTask.O
     @Override
     public void showErrorTask() {
         interactorOutput.hideProgressBar();
+        interactorOutput.showErrorMessage();
     }
 }

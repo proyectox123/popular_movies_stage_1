@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.example.android.popularmoviesstate1.R;
 import com.example.android.popularmoviesstate1.data.remote.models.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -118,6 +119,20 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         public void bind(Movie movie){
             this.movie = movie;
+
+            initMoviePoster(movie.getPosterPath());
+        }
+
+        //endregion
+
+        //Private Methods
+
+        private void initMoviePoster(String moviePosterPath){
+            Picasso.get()
+                    .load(moviePosterPath)
+                    .placeholder(R.drawable.ic_movie_black_48dp)
+                    .error(R.drawable.ic_movie_black_48dp)
+                    .into(moviePosterImageView);
         }
 
         //endregion

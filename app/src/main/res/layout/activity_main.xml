@@ -4,19 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorMovieBackground"
     tools:context=".features.main.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/movieListView"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/movieListSwipeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        tools:layoutManager="android.support.v7.widget.GridLayoutManager"
-        tools:orientation="vertical"
-        tools:scrollbars="vertical"
-        tools:spanCount="2"
-        tools:listitem="@layout/layout_item_movie_poster"
-        tools:visibility="visible"/>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/movieListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:layoutManager="android.support.v7.widget.GridLayoutManager"
+            tools:orientation="vertical"
+            tools:scrollbars="vertical"
+            tools:spanCount="2"
+            tools:listitem="@layout/layout_item_movie_poster"
+            tools:visibility="visible"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/movieListProgressBar"

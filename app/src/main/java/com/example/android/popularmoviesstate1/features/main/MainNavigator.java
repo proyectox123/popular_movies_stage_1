@@ -8,6 +8,7 @@ public interface MainNavigator {
 
     interface View {
         void hideProgressBar();
+        void showErrorMessage();
         void showProgressBar();
         void updateMovieList(List<Movie> movieList);
     }
@@ -22,6 +23,7 @@ public interface MainNavigator {
 
     interface InteractorOutput {
         void hideProgressBar();
+        void showErrorMessage();
         void showProgressBar();
         void updateMovieList(List<Movie> movieList);
     }

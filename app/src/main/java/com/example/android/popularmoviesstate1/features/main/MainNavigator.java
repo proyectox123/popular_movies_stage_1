@@ -15,10 +15,14 @@ public interface MainNavigator {
 
     interface Presenter {
         void initMovieList();
+        void showMovieListByHighestRated();
+        void showMovieListByMostPopular();
     }
 
     interface Interactor {
         void initMovieList();
+        void showMovieListByHighestRated();
+        void showMovieListByMostPopular();
     }
 
     interface InteractorOutput {

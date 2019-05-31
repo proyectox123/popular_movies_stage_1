@@ -1,4 +1,4 @@
-package com.example.android.popularmoviesstate1.data.remote;
+package com.example.android.popularmoviesstate1.data.remote.parser;
 
 import android.content.Context;
 

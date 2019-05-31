@@ -33,6 +33,16 @@ public class MainPresenter implements MainNavigator.Presenter, MainNavigator.Int
     }
 
     @Override
+    public void showMovieListByHighestRated() {
+        interactor.showMovieListByHighestRated();
+    }
+
+    @Override
+    public void showMovieListByMostPopular() {
+        interactor.showMovieListByMostPopular();
+    }
+
+    @Override
     public void hideProgressBar() {
         view.hideProgressBar();
     }

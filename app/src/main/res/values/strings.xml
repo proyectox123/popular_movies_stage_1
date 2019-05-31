@@ -4,4 +4,7 @@
     <string name="content_description_movie_poster_item">Movie poster item</string>
 
     <string name="label_no_available_data">No available data for the moment.</string>
+
+    <string name="menu_movie_highest_rated">Highest Rated</string>
+    <string name="menu_movie_most_popular">Most Popular</string>
 </resources>

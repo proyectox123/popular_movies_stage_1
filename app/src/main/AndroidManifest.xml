@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".features.moviedetail.MovieDetailActivity"
+            android:label="@string/title_movie_detail_activity"
             android:parentActivityName=".features.main.MainActivity" />
     </application>
 

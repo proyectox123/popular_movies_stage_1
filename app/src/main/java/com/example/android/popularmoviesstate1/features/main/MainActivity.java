@@ -1,8 +1,9 @@
 package com.example.android.popularmoviesstate1.features.main;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -11,15 +12,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.popularmoviesstate1.R;
 import com.example.android.popularmoviesstate1.data.remote.models.Movie;
-import com.example.android.popularmoviesstate1.decorations.SpaceItemDecoration;
+import com.example.android.popularmoviesstate1.enums.MovieEnum;
 import com.example.android.popularmoviesstate1.features.movie.MovieListAdapter;
+import com.example.android.popularmoviesstate1.features.moviedetail.MovieDetailActivity;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.android.popularmoviesstate1.features.moviedetail.MovieDetailActivity.EXTRA_MOVIE;
 
 public class MainActivity extends AppCompatActivity implements MainNavigator.View,
         MovieListAdapter.OnMovieListAdapterListener{
@@ -27,11 +29,12 @@ public class MainActivity extends AppCompatActivity implements MainNavigator.Vie
     //region Constants
 
     private final static int MOVIE_GRID_SPAN_COUNT = 2;
-    private final static int MOVIE_GRID_PADDING = 8;
 
     //endregion
 
     //region Fields
+
+    private MovieEnum movieEnum = MovieEnum.TOP_RATED;
 
     private ProgressBar movieListProgressBar;
     private RecyclerView movieListView;
@@ -60,13 +63,12 @@ public class MainActivity extends AppCompatActivity implements MainNavigator.Vie
 
         movieListView.setHasFixedSize(true);
         movieListView.setLayoutManager(new GridLayoutManager(this, MOVIE_GRID_SPAN_COUNT));
-        movieListView.addItemDecoration(new SpaceItemDecoration(MOVIE_GRID_PADDING));
         movieListView.setAdapter(movieListAdapter);
 
         movieListSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                presenter.initMovieList();
+                presenter.initMovieList(movieEnum);
             }
         });
 
@@ -84,10 +86,10 @@ public class MainActivity extends AppCompatActivity implements MainNavigator.Vie
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_movie_most_popular:
-                presenter.showMovieListByMostPopular();
+                selectMovieMostPopularOption();
                 return true;
             case R.id.menu_movie_highest_rated:
-                presenter.showMovieListByHighestRated();
+                selectMovieHighestRatedOption();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -96,7 +98,9 @@ public class MainActivity extends AppCompatActivity implements MainNavigator.Vie
 
     @Override
     public void onClickedMovieItem(Movie movie) {
-        Toast.makeText(this, "Movie: " + movie.getPosterPath(), Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, MovieDetailActivity.class);
+        intent.putExtra(EXTRA_MOVIE, movie);
+        startActivity(intent);
     }
 
     @Override
@@ -129,7 +133,17 @@ public class MainActivity extends AppCompatActivity implements MainNavigator.Vie
 
     private void initData(){
         presenter = new MainPresenter(this, this);
-        presenter.initMovieList();
+        presenter.initMovieList(movieEnum);
+    }
+
+    private void selectMovieMostPopularOption(){
+        movieEnum = MovieEnum.POPULAR;
+        presenter.initMovieList(movieEnum);
+    }
+
+    private void selectMovieHighestRatedOption(){
+        movieEnum = MovieEnum.TOP_RATED;
+        presenter.initMovieList(movieEnum);
     }
 
     //endregion

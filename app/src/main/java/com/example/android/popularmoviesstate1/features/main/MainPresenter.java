@@ -3,6 +3,7 @@ package com.example.android.popularmoviesstate1.features.main;
 import android.content.Context;
 
 import com.example.android.popularmoviesstate1.data.remote.models.Movie;
+import com.example.android.popularmoviesstate1.enums.MovieEnum;
 
 import java.util.List;
 
@@ -27,19 +28,10 @@ public class MainPresenter implements MainNavigator.Presenter, MainNavigator.Int
 
     //region Override Methods & Callbacks
 
-    @Override
-    public void initMovieList() {
-        interactor.initMovieList();
-    }
 
     @Override
-    public void showMovieListByHighestRated() {
-        interactor.showMovieListByHighestRated();
-    }
-
-    @Override
-    public void showMovieListByMostPopular() {
-        interactor.showMovieListByMostPopular();
+    public void initMovieList(MovieEnum movieType) {
+        interactor.initMovieList(movieType);
     }
 
     @Override

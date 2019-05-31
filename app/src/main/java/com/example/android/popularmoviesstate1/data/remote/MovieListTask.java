@@ -7,19 +7,13 @@ import com.example.android.popularmoviesstate1.data.remote.models.Movie;
 import com.example.android.popularmoviesstate1.data.remote.parser.MovieListJsonUtils;
 import com.example.android.popularmoviesstate1.data.remote.requests.MoviePopularRequest;
 import com.example.android.popularmoviesstate1.data.remote.requests.MovieTopRatedRequest;
+import com.example.android.popularmoviesstate1.enums.MovieEnum;
 
 import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.util.List;
 
-public class MovieListTask extends AsyncTask<String, Void, List<Movie>> {
-
-    //region Constants
-
-    public final static String MOVIE_POPULAR = "MOVIE_POPULAR";
-    public final static String MOVIE_TOP_RATED = "MOVIE_TOP_RATED";
-
-    //endregion
+public class MovieListTask extends AsyncTask<MovieEnum, Void, List<Movie>> {
 
     //region Fields
 
@@ -41,7 +35,7 @@ public class MovieListTask extends AsyncTask<String, Void, List<Movie>> {
     //region Override Methods & Callbacks
 
     @Override
-    protected List<Movie> doInBackground(String... params) {
+    protected List<Movie> doInBackground(MovieEnum... params) {
         if (params.length == 0) {
             return null;
         }
@@ -51,13 +45,13 @@ public class MovieListTask extends AsyncTask<String, Void, List<Movie>> {
         }
 
         switch (params[0]){
-            case MOVIE_POPULAR:
+            case POPULAR:
                 return getMoviePopularList();
-            case MOVIE_TOP_RATED:
+            case TOP_RATED:
                 return getMovieTopRatedList();
+            default:
+                return null;
         }
-
-        return null;
     }
 
     @Override

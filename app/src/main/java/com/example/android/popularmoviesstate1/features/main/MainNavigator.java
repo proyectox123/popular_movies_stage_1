@@ -1,6 +1,7 @@
 package com.example.android.popularmoviesstate1.features.main;
 
 import com.example.android.popularmoviesstate1.data.remote.models.Movie;
+import com.example.android.popularmoviesstate1.enums.MovieEnum;
 
 import java.util.List;
 
@@ -14,15 +15,11 @@ public interface MainNavigator {
     }
 
     interface Presenter {
-        void initMovieList();
-        void showMovieListByHighestRated();
-        void showMovieListByMostPopular();
+        void initMovieList(MovieEnum movieType);
     }
 
     interface Interactor {
-        void initMovieList();
-        void showMovieListByHighestRated();
-        void showMovieListByMostPopular();
+        void initMovieList(MovieEnum movieType);
     }
 
     interface InteractorOutput {

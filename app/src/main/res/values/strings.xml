@@ -1,10 +1,19 @@
 <resources>
     <string name="app_name">Popular Movies Stage 1</string>
 
+    <!-- Movie detail -->
+    <string name="title_movie_detail_activity">Movie Detail</string>
+    <string name="text_movie_detail_vote_average">Average vote: %1$s</string>
+
+    <!-- Descriptions -->
     <string name="content_description_movie_poster_item">Movie poster item</string>
+    <string name="content_description_movie_detail_poster_item">Movie detail poster item</string>
 
+    <!-- Message Errors -->
     <string name="label_no_available_data">No available data for the moment.</string>
+    <string name="error_movie_detail">Movie data not available</string>
 
+    <!-- Menu labels -->
     <string name="menu_movie_highest_rated">Highest Rated</string>
     <string name="menu_movie_most_popular">Most Popular</string>
 </resources>

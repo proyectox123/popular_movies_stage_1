@@ -5,42 +5,37 @@ import android.os.AsyncTask;
 
 import com.example.android.popularmoviesstate1.data.remote.MovieListTask;
 import com.example.android.popularmoviesstate1.data.remote.models.Movie;
+import com.example.android.popularmoviesstate1.enums.MovieEnum;
 
 import java.util.List;
 
 public class MainInteractor implements MainNavigator.Interactor, MovieListTask.OnMovieListTaskListener {
 
-    private MovieListTask movieListTask;
+    //region Fields
+
+    private Context context;
 
     private MainNavigator.InteractorOutput interactorOutput;
 
+    //endregion
+
+    //region Constructors
+
     public MainInteractor(Context context, MainNavigator.InteractorOutput interactorOutput){
         this.interactorOutput = interactorOutput;
-
-        this.movieListTask = new MovieListTask(context, this);
+        this.context = context;
     }
+
+    //endregion
 
     //region Override Methods & Callbacks
 
-    @Override
-    public void initMovieList() {
-        interactorOutput.showProgressBar();
-
-        movieListTask.execute(MovieListTask.MOVIE_TOP_RATED);
-    }
 
     @Override
-    public void showMovieListByHighestRated() {
+    public void initMovieList(MovieEnum movieType) {
         interactorOutput.showProgressBar();
 
-        movieListTask.execute(MovieListTask.MOVIE_TOP_RATED);
-    }
-
-    @Override
-    public void showMovieListByMostPopular() {
-        interactorOutput.showProgressBar();
-
-        movieListTask.execute(MovieListTask.MOVIE_POPULAR);
+        new MovieListTask(context, this).execute(movieType);
     }
 
     @Override

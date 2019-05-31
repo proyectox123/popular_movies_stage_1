@@ -1,6 +1,25 @@
 package com.example.android.popularmoviesstate1.data.remote.models;
 
-public class Movie {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Movie implements Parcelable {
+
+    //region Constants
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
+
+    //endregion
+
+    //region Fields
 
     private int id;
     private String title;
@@ -8,6 +27,10 @@ public class Movie {
     private String posterPath;
     private double voteAverage;
     private String plotSynopsis;
+
+    //endregion
+
+    //region Constructors
 
     public Movie(int id, String title, String releaseDate, String posterPath, double voteAverage, String plotSynopsis) {
         this.id = id;
@@ -17,6 +40,38 @@ public class Movie {
         this.voteAverage = voteAverage;
         this.plotSynopsis = plotSynopsis;
     }
+
+    public Movie(Parcel in){
+        this.id = in.readInt();
+        this.title = in.readString();
+        this.releaseDate = in.readString();
+        this.posterPath = in.readString();
+        this.voteAverage = in.readDouble();
+        this.plotSynopsis = in.readString();
+    }
+
+    //endregion
+
+    //region Override Methods & Callbacks
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.title);
+        dest.writeString(this.releaseDate);
+        dest.writeString(this.posterPath);
+        dest.writeDouble(this.voteAverage);
+        dest.writeString(this.plotSynopsis);
+    }
+
+    //endregion
+
+    //region Public Methods
 
     public int getId() {
         return id;
@@ -41,4 +96,6 @@ public class Movie {
     public String getPlotSynopsis() {
         return plotSynopsis;
     }
+
+    //endregion
 }

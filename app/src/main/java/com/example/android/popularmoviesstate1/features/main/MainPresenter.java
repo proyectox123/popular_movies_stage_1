@@ -28,7 +28,6 @@ public class MainPresenter implements MainNavigator.Presenter, MainNavigator.Int
 
     //region Override Methods & Callbacks
 
-
     @Override
     public void initMovieList(MovieEnum movieType) {
         interactor.initMovieList(movieType);

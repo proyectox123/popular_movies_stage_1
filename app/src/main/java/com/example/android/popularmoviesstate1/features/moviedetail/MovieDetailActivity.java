@@ -12,7 +12,7 @@ import com.example.android.popularmoviesstate1.R;
 import com.example.android.popularmoviesstate1.data.remote.models.Movie;
 import com.squareup.picasso.Picasso;
 
-public class MovieDetailActivity extends AppCompatActivity {
+public class MovieDetailActivity extends AppCompatActivity implements MovieDetailNavigator.View {
 
     //region Constants
 
@@ -27,6 +27,8 @@ public class MovieDetailActivity extends AppCompatActivity {
     private TextView movieDetailReleaseDateTextView;
     private TextView movieDetailVoteAverageTextView;
     private TextView movieDetailDescriptionTextView;
+
+    private MovieDetailNavigator.Presenter presenter;
 
     //endregion
 
@@ -56,46 +58,48 @@ public class MovieDetailActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void closeOnError() {
+        finish();
+        Toast.makeText(this, R.string.error_movie_detail, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void loadMovieDetailPoster(String posterPath) {
+        Picasso.get()
+                .load(posterPath)
+                .placeholder(R.drawable.ic_movie_black_48dp)
+                .error(R.drawable.ic_movie_black_48dp)
+                .into(movieDetailPosterImageView);
+    }
+
+    @Override
+    public void loadMovieDetailTitle(String title) {
+        movieDetailTitleTextView.setText(title);
+    }
+
+    @Override
+    public void loadMovieDetailReleaseDate(String releaseDate) {
+        movieDetailReleaseDateTextView.setText(releaseDate);
+    }
+
+    @Override
+    public void loadMovieDetailVoteAverage(String voteAverage) {
+        movieDetailVoteAverageTextView.setText(voteAverage);
+    }
+
+    @Override
+    public void loadMovieDetailDescription(String plotSynopsis) {
+        movieDetailDescriptionTextView.setText(plotSynopsis);
+    }
+
     //endregion
 
     //region Private Methods
 
     private void initData(){
-        Intent intent = getIntent();
-        if (intent == null) {
-            closeOnError();
-            return;
-        }
-
-        Movie movie = intent.getParcelableExtra(EXTRA_MOVIE);
-        if (movie == null) {
-            closeOnError();
-            return;
-        }
-
-        initMovieDetailData(movie);
-    }
-
-    private void closeOnError() {
-        finish();
-        Toast.makeText(this, R.string.error_movie_detail, Toast.LENGTH_SHORT).show();
-    }
-
-    private void initMovieDetailData(Movie movie){
-        Picasso.get()
-                .load(movie.getPosterPath())
-                .placeholder(R.drawable.ic_movie_black_48dp)
-                .error(R.drawable.ic_movie_black_48dp)
-                .into(movieDetailPosterImageView);
-        movieDetailTitleTextView.setText(movie.getTitle());
-        movieDetailReleaseDateTextView.setText(movie.getReleaseDate());
-        movieDetailVoteAverageTextView.setText(getVoteAverageLabel(movie.getVoteAverage()));
-        movieDetailDescriptionTextView.setText(movie.getPlotSynopsis());
-    }
-
-    private String getVoteAverageLabel(double voteAverage){
-        String voteAverageLabel = voteAverage + "/10";
-        return getString(R.string.text_movie_detail_vote_average, voteAverageLabel);
+        presenter = new MovieDetailPresenter(this, this);
+        presenter.validateMovieDetailExtraData(getIntent());
     }
 
     //endregion

@@ -14,7 +14,7 @@ public abstract class BaseMovieRequest {
 
     private final static String TAG = BaseMovieRequest.class.getSimpleName();
 
-    public abstract Uri createBuiltUri();
+    protected abstract Uri createBuiltUri();
 
     public URL buildUrl() {
         URL url = null;

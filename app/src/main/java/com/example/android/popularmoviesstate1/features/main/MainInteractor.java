@@ -1,8 +1,5 @@
 package com.example.android.popularmoviesstate1.features.main;
 
-import android.content.Context;
-import android.os.AsyncTask;
-
 import com.example.android.popularmoviesstate1.data.remote.MovieListTask;
 import com.example.android.popularmoviesstate1.data.remote.models.Movie;
 import com.example.android.popularmoviesstate1.enums.MovieEnum;
@@ -13,17 +10,14 @@ public class MainInteractor implements MainNavigator.Interactor, MovieListTask.O
 
     //region Fields
 
-    private Context context;
-
-    private MainNavigator.InteractorOutput interactorOutput;
+    private final MainNavigator.InteractorOutput interactorOutput;
 
     //endregion
 
     //region Constructors
 
-    public MainInteractor(Context context, MainNavigator.InteractorOutput interactorOutput){
+    MainInteractor(MainNavigator.InteractorOutput interactorOutput){
         this.interactorOutput = interactorOutput;
-        this.context = context;
     }
 
     //endregion
@@ -35,7 +29,7 @@ public class MainInteractor implements MainNavigator.Interactor, MovieListTask.O
     public void initMovieList(MovieEnum movieType) {
         interactorOutput.showProgressBar();
 
-        new MovieListTask(context, this).execute(movieType);
+        new MovieListTask(this).execute(movieType);
     }
 
     @Override

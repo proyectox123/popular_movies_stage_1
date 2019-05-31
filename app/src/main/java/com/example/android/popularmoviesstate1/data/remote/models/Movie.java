@@ -21,12 +21,12 @@ public class Movie implements Parcelable {
 
     //region Fields
 
-    private int id;
-    private String title;
-    private String releaseDate;
-    private String posterPath;
-    private double voteAverage;
-    private String plotSynopsis;
+    private final int id;
+    private final String title;
+    private final String releaseDate;
+    private final String posterPath;
+    private final double voteAverage;
+    private final String plotSynopsis;
 
     //endregion
 
@@ -41,7 +41,7 @@ public class Movie implements Parcelable {
         this.plotSynopsis = plotSynopsis;
     }
 
-    public Movie(Parcel in){
+    private Movie(Parcel in){
         this.id = in.readInt();
         this.title = in.readString();
         this.releaseDate = in.readString();
@@ -72,10 +72,6 @@ public class Movie implements Parcelable {
     //endregion
 
     //region Public Methods
-
-    public int getId() {
-        return id;
-    }
 
     public String getTitle() {
         return title;

@@ -8,12 +8,10 @@ public class MovieTopRatedRequest extends BaseMovieRequest {
 
     //region Constants
 
-    private final static String TAG = MovieTopRatedRequest.class.getSimpleName();
-
     private final static String BASE_MOVIE_DB_URL = "https://api.themoviedb.org/3/";
     private final static String MOVIE_TOP_RATED_URL = BASE_MOVIE_DB_URL + "movie/top_rated";
 
-    private final static String QUERY_PARAMENTER_API_KEY = "api_key";
+    private final static String QUERY_PARAMETER_API_KEY = "api_key";
 
     //endregion
 
@@ -22,7 +20,7 @@ public class MovieTopRatedRequest extends BaseMovieRequest {
     @Override
     public Uri createBuiltUri() {
         return Uri.parse(MOVIE_TOP_RATED_URL).buildUpon()
-                .appendQueryParameter(QUERY_PARAMENTER_API_KEY, BuildConfig.MOVIE_DB_API_KEY)
+                .appendQueryParameter(QUERY_PARAMETER_API_KEY, BuildConfig.MOVIE_DB_API_KEY)
                 .build();
     }
 

@@ -11,7 +11,7 @@ public class MoviePopularRequest extends BaseMovieRequest {
     private final static String BASE_MOVIE_DB_URL = "https://api.themoviedb.org/3/";
     private final static String MOVIE_POPULAR_URL = BASE_MOVIE_DB_URL + "movie/popular";
 
-    private final static String QUERY_PARAMENTER_API_KEY = "api_key";
+    private final static String QUERY_PARAMETER_API_KEY = "api_key";
 
     //endregion
 
@@ -20,7 +20,7 @@ public class MoviePopularRequest extends BaseMovieRequest {
     @Override
     public Uri createBuiltUri() {
         return Uri.parse(MOVIE_POPULAR_URL).buildUpon()
-                .appendQueryParameter(QUERY_PARAMENTER_API_KEY, BuildConfig.MOVIE_DB_API_KEY)
+                .appendQueryParameter(QUERY_PARAMETER_API_KEY, BuildConfig.MOVIE_DB_API_KEY)
                 .build();
     }
 

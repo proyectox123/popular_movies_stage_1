@@ -3,6 +3,4 @@
     <color name="colorPrimary">#303f9f</color>
     <color name="colorPrimaryDark">#001970</color>
     <color name="colorAccent">#1B9CD8</color>
-
-    <color name="colorMovieBackground">#27001AFF</color>
 </resources>

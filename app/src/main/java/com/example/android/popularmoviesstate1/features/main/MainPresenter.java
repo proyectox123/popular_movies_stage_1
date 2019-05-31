@@ -1,7 +1,5 @@
 package com.example.android.popularmoviesstate1.features.main;
 
-import android.content.Context;
-
 import com.example.android.popularmoviesstate1.data.remote.models.Movie;
 import com.example.android.popularmoviesstate1.enums.MovieEnum;
 
@@ -11,17 +9,17 @@ public class MainPresenter implements MainNavigator.Presenter, MainNavigator.Int
 
     //region Fields
 
-    private MainNavigator.View view;
-    private MainNavigator.Interactor interactor;
+    private final MainNavigator.View view;
+    private final MainNavigator.Interactor interactor;
 
     //endregion
 
     //region Constructors
 
-    public MainPresenter(Context context, MainNavigator.View view){
+    public MainPresenter(MainNavigator.View view){
         this.view = view;
 
-        this.interactor = new MainInteractor(context, this);
+        this.interactor = new MainInteractor(this);
     }
 
     //endregion

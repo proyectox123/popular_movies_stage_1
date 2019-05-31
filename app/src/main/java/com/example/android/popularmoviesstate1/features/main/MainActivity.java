@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator.Vie
     //region Private Methods
 
     private void initData(){
-        presenter = new MainPresenter(this, this);
+        presenter = new MainPresenter(this);
         presenter.initMovieList(movieEnum);
     }
 

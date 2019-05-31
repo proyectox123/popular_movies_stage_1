@@ -8,8 +8,8 @@ public class MovieDetailPresenter implements MovieDetailNavigator.Presenter,
 
     //region Fields
 
-    private MovieDetailNavigator.View view;
-    private MovieDetailNavigator.Interactor interactor;
+    private final MovieDetailNavigator.View view;
+    private final MovieDetailNavigator.Interactor interactor;
 
     //endregion
 

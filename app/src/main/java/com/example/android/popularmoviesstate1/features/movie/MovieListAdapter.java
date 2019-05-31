@@ -21,7 +21,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     private List<Movie> movieList;
 
-    private OnMovieListAdapterListener onMovieListAdapterListener;
+    private final OnMovieListAdapterListener onMovieListAdapterListener;
 
     //endregion
 
@@ -72,6 +72,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         return inflater.inflate(getLayoutIdForListItem(), viewGroup, false);
     }
 
+    //I think that this could be useful if I implement a BaseRecyclerView class
     @LayoutRes
     private int getLayoutIdForListItem(){
         return R.layout.layout_item_movie_poster;
@@ -85,7 +86,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         //region Fields
 
-        private ImageView moviePosterImageView;
+        private final ImageView moviePosterImageView;
 
         private Movie movie;
 
@@ -93,7 +94,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         //region Constructors
 
-        public MovieListViewHolder(@NonNull View itemView) {
+        MovieListViewHolder(@NonNull View itemView) {
             super(itemView);
 
             moviePosterImageView = itemView.findViewById(R.id.moviePosterImageView);
@@ -106,10 +107,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.moviePosterImageView:
-                    onMovieListAdapterListener.onClickedMovieItem(movie);
-                    break;
+            if (v.getId() == R.id.moviePosterImageView) {
+                onMovieListAdapterListener.onClickedMovieItem(movie);
             }
         }
 
@@ -117,7 +116,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         //Public Methods
 
-        public void bind(Movie movie){
+        void bind(Movie movie){
             this.movie = movie;
 
             initMoviePoster(movie.getPosterPath());
@@ -139,7 +138,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     }
 
     public interface OnMovieListAdapterListener {
-        public void onClickedMovieItem(Movie movie);
+        void onClickedMovieItem(Movie movie);
     }
 
     //endregion

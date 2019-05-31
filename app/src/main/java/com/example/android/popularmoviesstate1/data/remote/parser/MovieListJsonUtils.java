@@ -1,7 +1,5 @@
 package com.example.android.popularmoviesstate1.data.remote.parser;
 
-import android.content.Context;
-
 import com.example.android.popularmoviesstate1.data.remote.models.Movie;
 
 import org.json.JSONArray;
@@ -15,7 +13,7 @@ public final class MovieListJsonUtils {
 
     private final static String URL_IMAGE_TBMD = "http://image.tmdb.org/t/p/w185/";
 
-    public static List<Movie> getMovieListFromJson(Context context, String movieListJsonStr)
+    public static List<Movie> getMovieListFromJson(String movieListJsonStr)
             throws JSONException {
 
         JSONObject movieListJson = new JSONObject(movieListJsonStr);

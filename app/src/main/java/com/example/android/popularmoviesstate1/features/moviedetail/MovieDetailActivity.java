@@ -1,6 +1,5 @@
 package com.example.android.popularmoviesstate1.features.moviedetail;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.popularmoviesstate1.R;
-import com.example.android.popularmoviesstate1.data.remote.models.Movie;
 import com.squareup.picasso.Picasso;
 
 public class MovieDetailActivity extends AppCompatActivity implements MovieDetailNavigator.View {
@@ -27,8 +25,6 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     private TextView movieDetailReleaseDateTextView;
     private TextView movieDetailVoteAverageTextView;
     private TextView movieDetailDescriptionTextView;
-
-    private MovieDetailNavigator.Presenter presenter;
 
     //endregion
 
@@ -98,7 +94,7 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     //region Private Methods
 
     private void initData(){
-        presenter = new MovieDetailPresenter(this, this);
+        MovieDetailNavigator.Presenter presenter = new MovieDetailPresenter(this, this);
         presenter.validateMovieDetailExtraData(getIntent());
     }
 

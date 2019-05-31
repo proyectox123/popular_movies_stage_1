@@ -1,6 +1,5 @@
 package com.example.android.popularmoviesstate1.data.remote;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.android.popularmoviesstate1.data.remote.models.Movie;
@@ -9,7 +8,6 @@ import com.example.android.popularmoviesstate1.data.remote.requests.MoviePopular
 import com.example.android.popularmoviesstate1.data.remote.requests.MovieTopRatedRequest;
 import com.example.android.popularmoviesstate1.enums.MovieEnum;
 
-import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.util.List;
 
@@ -17,16 +15,13 @@ public class MovieListTask extends AsyncTask<MovieEnum, Void, List<Movie>> {
 
     //region Fields
 
-    private WeakReference<Context> contextRef;
-
-    private OnMovieListTaskListener onMovieListTaskListener;
+    private final OnMovieListTaskListener onMovieListTaskListener;
 
     //endregion
 
     //region Constructors
 
-    public MovieListTask(Context context, OnMovieListTaskListener onMovieListTaskListener){
-        this.contextRef = new WeakReference<>(context);
+    public MovieListTask(OnMovieListTaskListener onMovieListTaskListener){
         this.onMovieListTaskListener = onMovieListTaskListener;
     }
 
@@ -37,10 +32,6 @@ public class MovieListTask extends AsyncTask<MovieEnum, Void, List<Movie>> {
     @Override
     protected List<Movie> doInBackground(MovieEnum... params) {
         if (params.length == 0) {
-            return null;
-        }
-
-        if(contextRef == null || contextRef.get() == null){
             return null;
         }
 
@@ -74,7 +65,7 @@ public class MovieListTask extends AsyncTask<MovieEnum, Void, List<Movie>> {
         try {
             String jsonMovieListResponse = moviePopular.getResponseFromHttpUrl(movieListRequestUrl);
 
-            return MovieListJsonUtils.getMovieListFromJson(contextRef.get(), jsonMovieListResponse);
+            return MovieListJsonUtils.getMovieListFromJson(jsonMovieListResponse);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -88,7 +79,7 @@ public class MovieListTask extends AsyncTask<MovieEnum, Void, List<Movie>> {
         try {
             String jsonMovieListResponse = moviePopular.getResponseFromHttpUrl(movieListRequestUrl);
 
-            return MovieListJsonUtils.getMovieListFromJson(contextRef.get(), jsonMovieListResponse);
+            return MovieListJsonUtils.getMovieListFromJson(jsonMovieListResponse);
         } catch (Exception e) {
             e.printStackTrace();
         }

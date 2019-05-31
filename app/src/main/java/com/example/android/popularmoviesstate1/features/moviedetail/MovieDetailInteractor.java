@@ -5,8 +5,6 @@ import android.content.Intent;
 
 import com.example.android.popularmoviesstate1.R;
 import com.example.android.popularmoviesstate1.data.remote.models.Movie;
-import com.example.android.popularmoviesstate1.features.main.MainNavigator;
-import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,9 +17,9 @@ public class MovieDetailInteractor implements MovieDetailNavigator.Interactor {
 
     //region Fields
 
-    private Context context;
+    private final Context context;
 
-    private MovieDetailNavigator.InteractorOutput interactorOutput;
+    private final MovieDetailNavigator.InteractorOutput interactorOutput;
 
     //endregion
 
